@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Documents</title>
+</head>
+<body>
+    <h1>Search Documents</h1>
+    <label for="query">Enter Search Term:</label>
+    <input type="text" id="query" name="query" required>
+    <button onclick="search()">Search</button>
+    <div id="searchResults"></div>
+
+    <script>
+        function search() {
+            var query = document.getElementById('query').value;
+
+            // Create the link dynamically
+            var link = `https://us-central1-prashul-kumar-fall2023.cloudfunctions.net/main/?query=${query}`;
+
+            // Update the HTML to display the link
+            document.getElementById('searchResults').innerHTML = `<p>Results for query: <a href="${link}" target="_blank">${link}</a></p>`;
+
+            fetch(link)
+                .then(response => response.text())
+                .then(result => {
+                    document.getElementById('searchResults').innerHTML += `<p>${result}</p>`;
+                })
+                .catch(error => console.error('Error fetching results:', error));
+        }
+    </script>
+</body>
+</html>
