@@ -13,7 +13,7 @@ Each mapper creates word mappings for its assigned chunk. Intermediate results a
 
 **- Reduce Word Count function (reduce_final.py):** Reduce word counts by aggregating results from multiple mappers based on ASCII-based hash values. Retrieve input parameters from the HTTP request payload. Initialize a dictionary to store the reduced results. Iterate through intermediate results stored in Cloud Storage. For each word, use the ASCII-based hash to determine the assigned reducer. If the reducer index matches the current reducer, aggregate counts for the word. Upload the final reduced 3 files results to Cloud Storage.
 
-- Streaming Cloud Function (trigger.py): The function is triggered by a change in the specified Cloud Storage bucket. Extract bucket name and file name from the trigger data. Check if the file name follows the expected pattern. If the pattern matches, trigger the master function to process the new file. Upon successful processing by the master function, append the results to the combined results file.
+**- Streaming Cloud Function (trigger.py):** The function is triggered by a change in the specified Cloud Storage bucket. Extract bucket name and file name from the trigger data. Check if the file name follows the expected pattern. If the pattern matches, trigger the master function to process the new file. Upon successful processing by the master function, append the results to the combined results file.
 
 ### Execution - 
 
